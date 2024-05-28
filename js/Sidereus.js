@@ -1,7 +1,16 @@
 class Sidereus {
 
-	play(level){
+	#level;
+	#drawer;
 
-		level.start();
+	constructor(level) {
+
+		this.#level = level;
+		this.#drawer = new Drawer();
+	}
+
+	gameLoop(){
+
+		this.#drawer.drawHero(this.#level.hero);
 	}
 }

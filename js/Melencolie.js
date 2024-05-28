@@ -87,7 +87,7 @@ class Melencolie {
 	}
 
 	#getSideCoordRotation(coord, side) {
-		//debugger;
+		
 		if (side === 1) {
 
 			return this.#getAngleRotation(coord, this.#weapon.angleEndpointOne);

@@ -15,9 +15,8 @@ class Main {
 
 	#play(){
 
-		const sidereus = new Sidereus();
-		const drawer = new Drawer();
-		const level = new Level(drawer);
-		sidereus.play(level);
+		const level = new Level(new Melencolie(), 'Easy');
+		const sidereus = new Sidereus(level);
+		sidereus.gameLoop();
 	}
 }

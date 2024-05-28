@@ -1,16 +1,21 @@
 class Level {
 
-	#drawer;
-	#melencolie;
+	#hero;
+	#difficulty;
 
-	constructor(drawer){
+	constructor(hero, difficulty){
 
-		this.#drawer = drawer;
-		this.#melencolie = new Melencolie();
+		this.#hero = hero;
+		this.#difficulty = difficulty;
 	}
 
-	start(){
+	get hero() {
 
-		this.#drawer.drawHero(this.#melencolie);
+		return this.#hero;
+	}
+
+	get difficulty() {
+
+		return this.#difficulty;
 	}
 }
