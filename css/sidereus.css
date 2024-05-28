@@ -1,0 +1,13 @@
+body {
+	
+	background-color: black;
+	color: yellowgreen;
+}
+
+canvas {
+
+	border-color: greenyellow;
+	border-style: solid;
+	width: 95vw;
+	height: 85vh;
+}
