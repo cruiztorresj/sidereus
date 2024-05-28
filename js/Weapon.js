@@ -2,11 +2,13 @@ class Weapon {
 
 	#angleEndpointOne;
 	#angleEndpointTwo;
+	#color;
 	
 	constructor() {
 
 		this.#angleEndpointOne = -90;
 		this.#angleEndpointTwo = -45;
+		this.#color = 'tomato';
 	}
 
 	get angleEndpointOne() {
@@ -27,5 +29,15 @@ class Weapon {
 	set angleEndpointTwo(angle) {
 
 		this.#angleEndpointTwo = angle;
+	}
+
+	get color() {
+
+		return this.#color;
+	}
+
+	set color(color) {
+
+		this.#color = color;
 	}
 }
