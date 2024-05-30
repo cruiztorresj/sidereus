@@ -38,11 +38,16 @@ class Drawer {
 		this.#context.strokeStyle = hero.weapon.color;
 		this.#context.moveTo(hero.coordX, hero.coordY);
 
-		this.#context.lineTo(hero.retrieveWeaponCoord(1, 'x'), hero.retrieveWeaponCoord(1, 'y'));
+		this.#context.lineTo(hero.getWeaponCoord(1, 'x'), hero.getWeaponCoord(1, 'y'));
 
 		this.#context.moveTo(hero.coordX, hero.coordY);
-		this.#context.lineTo(hero.retrieveWeaponCoord(2, 'x'), hero.retrieveWeaponCoord(2, 'y'));
+		this.#context.lineTo(hero.getWeaponCoord(2, 'x'), hero.getWeaponCoord(2, 'y'));
 		
 		this.#context.stroke();
+	}
+
+	get sideral() {
+
+		return this.#sideral;
 	}
 }

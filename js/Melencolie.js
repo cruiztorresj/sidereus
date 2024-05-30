@@ -5,6 +5,8 @@ class Melencolie {
 	#radiusTwoFactor;
 	#coordX;
 	#coordY;
+	#gunEndpointOne;
+	#gunEndpointTwo;
 	#weapon;
 	#radiusOneColor;
 	#radiusTwoColor;
@@ -14,8 +16,8 @@ class Melencolie {
 		this.#radiusOne = 10;
 		this.#radiusTwoFactor = 1.20;
 		this.#radiusTwo = this.#radiusOne * this.#radiusTwoFactor;
-		this.#coordX = 100;
-		this.#coordY = 135;
+		this.#coordX = 150;
+		this.#coordY = 130;
 		this.#radiusOneColor = 'yellow';
 		this.#radiusTwoColor = 'aliceblue';
 		this.#weapon = new Weapon();
@@ -41,6 +43,16 @@ class Melencolie {
 		return this.#coordY;
 	}
 
+	get gunEndpointOne() {
+
+		return this.#gunEndpointOne;
+	}
+
+	get gunEndpointTwo() {
+
+		return this.#gunEndpointTwo;
+	}
+
 	set coordX(coordX) {
 
 		this.#coordX = coordX
@@ -51,30 +63,21 @@ class Melencolie {
 		this.#coordY = coordY
 	}
 
+	get radiusOneColor() {
+
+		return this.#radiusOneColor;
+	}
+
+	get radiusTwoColor() {
+
+		return this.#radiusTwoColor;
+	}
+
 	get weapon() {
 
 		return this.#weapon;
 	}
 
-	get radiusOneColor () {
-
-		return this.#radiusOneColor;
-	}
-
-	set radiusOneColor(color) {
-
-		return this.#radiusOneColor = color;
-	}
-
-	get radiusTwoColor () {
-
-		return this.#radiusTwoColor;
-	}
-
-	set radiusTwoColor(color) {
-
-		return this.#radiusOneColor = color;
-	}
 	#getAngleRotation(coord, angle) {
 
 		if (coord === 'x') {
@@ -87,7 +90,7 @@ class Melencolie {
 	}
 
 	#getSideCoordRotation(coord, side) {
-		
+
 		if (side === 1) {
 
 			return this.#getAngleRotation(coord, this.#weapon.angleEndpointOne);
@@ -97,7 +100,7 @@ class Melencolie {
 		}
 	}
 
-	retrieveWeaponCoord(side, coord) {
+	getWeaponCoord(side, coord) {
 
 		let result;
 
@@ -109,6 +112,6 @@ class Melencolie {
 			result = this.#coordY + this.#radiusTwo * this.#getSideCoordRotation(coord, side);
 		}
 
-		return result;	
+		return result;
 	}
 }

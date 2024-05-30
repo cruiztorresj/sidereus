@@ -13,7 +13,7 @@ class Main {
 		this.#playButton.addEventListener('click', this.#play);
 	}
 
-	#play(){
+	#play(evt){
 
 		const level = new Level(new Melencolie(), 'Easy');
 		const sidereus = new Sidereus(level);

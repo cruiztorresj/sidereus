@@ -7,10 +7,29 @@ class Sidereus {
 
 		this.#level = level;
 		this.#drawer = new Drawer();
+		this.#registerDrawerEvents();
 	}
 
-	gameLoop(){
+	gameLoop() {
 
 		this.#drawer.drawHero(this.#level.hero);
 	}
+
+	#registerDrawerEvents() {
+
+		this.#drawer.sideral.addEventListener('touchmove', this.#moveHero);
+	}
+
+	#moveHero(evt) {
+
+		evt.preventDefault();
+
+		const touches = evt.changedTouches;
+
+		const touched = touches.item(0);
+
+		
+		
+	}
+
 }
