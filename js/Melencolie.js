@@ -17,7 +17,7 @@ class Melencolie {
 		this.#radiusTwoFactor = 1.20;
 		this.#radiusTwo = this.#radiusOne * this.#radiusTwoFactor;
 		this.#coordX = 150;
-		this.#coordY = 130;
+		this.#coordY = 136;
 		this.#radiusOneColor = 'yellow';
 		this.#radiusTwoColor = 'aliceblue';
 		this.#weapon = new Weapon();

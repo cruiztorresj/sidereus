@@ -30,23 +30,29 @@ class Sidereus {
 		const touched = touches.item(0);
 
 		const convertedCoordX =
-			Utils.convertPageCoordToHeroCoord(touched.clientX);
+			Utils.convertPageCoordToHeroCoord(touched.clientX, 'x');
+
+		const convertedCoordY =
+			Utils.convertPageCoordToHeroCoord(touched.clientY, 'y');
 
 		const CoordXTouchDistance = Math.abs(this.#level.hero.coordX - convertedCoordX);
 
-		if (CoordXTouchDistance <= this.#level.hero.radiusTwo) {
+		if (convertedCoordY < 2) { // TODO: Magic Number to be removed
 
-			if (convertedCoordX < this.#level.hero.coordX) {
+			if (CoordXTouchDistance <= this.#level.hero.radiusTwo) {
 
-				this.#level.hero.coordX -= 1;
-			} else {
+				if (convertedCoordX < this.#level.hero.coordX) {
 
-				this.#level.hero.coordX += 1;
+					this.#level.hero.coordX -= 1;
+				} else {
+
+					this.#level.hero.coordX += 1;
+				}
 			}
-		}
 
-		this.#drawer.clearCanvas();
-		this.#drawer.drawHero(this.#level.hero);
+			this.#drawer.clearCanvas();
+			this.#drawer.drawHero(this.#level.hero);
+		}
 	}
 
 }
