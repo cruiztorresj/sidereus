@@ -1,5 +1,7 @@
-MELENCOLIE = 1;
+const MELENCOLIE = 1;
 
-CANVAS_LEFT_LIMIT = 13;
+const CANVAS_LEFT_LIMIT = 13;
 
-CANVAS_RIGHT_LIMIT = 287;
+const CANVAS_RIGHT_LIMIT = 287;
+
+const CLIENT_WIDTH = document.getElementById('sideral').clientWidth;

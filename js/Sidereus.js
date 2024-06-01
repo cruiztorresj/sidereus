@@ -14,8 +14,6 @@ class Sidereus {
 	gameLoop() {
 
 		this.#drawer.drawHero(this.#level.hero);
-		this.#level.hero.coordX = 65;
-		this.#drawer.drawHero(this.#level.hero);
 	}
 
 	#registerDrawerEvents() {
@@ -32,9 +30,23 @@ class Sidereus {
 		const touched = touches.item(0);
 
 		const convertedCoordX =
-			Utils.convertPageCoordToHeroCoord(touched.pageX);
-		
-		console.log(`pageX: ${touched.pageX} *** ConvertedX: ${convertedCoordX}`);
+			Utils.convertPageCoordToHeroCoord(touched.clientX);
+
+		const CoordXTouchDistance = Math.abs(this.#level.hero.coordX - convertedCoordX);
+
+		if (CoordXTouchDistance <= this.#level.hero.radiusTwo) {
+
+			if (convertedCoordX < this.#level.hero.coordX) {
+
+				this.#level.hero.coordX -= 1;
+			} else {
+
+				this.#level.hero.coordX += 1;
+			}
+		}
+
+		this.#drawer.clearCanvas();
+		this.#drawer.drawHero(this.#level.hero);
 	}
 
 }

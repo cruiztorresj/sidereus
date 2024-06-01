@@ -9,12 +9,22 @@ class Drawer {
 		this.#context = this.#sideral.getContext('2d');
 	}
 
+	get sideral() {
+
+		return this.#sideral;
+	}
+
 	drawHero(hero){
 
 		if (hero instanceof Melencolie) {
 
 			this.#drawMelencolie(hero);
 		}
+	}
+
+	clearCanvas() {
+
+		this.#context.clearRect(0, 0, this.#sideral.width, this.#sideral.height);
 	}
 
 	#drawMelencolie(hero) {
@@ -44,10 +54,5 @@ class Drawer {
 		this.#context.lineTo(hero.getWeaponCoord(2, 'x'), hero.getWeaponCoord(2, 'y'));
 		
 		this.#context.stroke();
-	}
-
-	get sideral() {
-
-		return this.#sideral;
 	}
 }
