@@ -1,21 +1,31 @@
 class Main {
 
-	#playButton;
+	#gui;
+	#state;
 
 	constructor() {
-
-		this.#playButton = document.getElementById('play');
+		
+		this.#gui = new Gui();
+		this.#state = new State();
+		this.play = this.play.bind(this);
 		this.#registerEvent();
 	}
 
 	#registerEvent() {
 
-		this.#playButton.addEventListener('click', this.#play);
+		this.#gui.sideral.addEventListener('touchstart', this.play);
 	}
 
-	#play(evt){
+	play(evt){
 
-		const level = new Level(new Melencolie(), 'Easy');
+		if(this.#state.firstTouch) {
+
+			this.#gui.deletePlayButton();
+			this.#state.firstTouch = false;
+		}
+
+		this.#gui.sideral.removeEventListener('touchstart', this.play);
+		const level = new Level(new Melencolie(), Constants.LEVEL_EASY);
 		const sidereus = new Sidereus(level);
 		sidereus.gameLoop();
 	}

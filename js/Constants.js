@@ -1,13 +1,19 @@
-const MELENCOLIE = 1;
+class Constants {
 
-const CANVAS_LEFT_LIMIT = 13;
+    static MELENCOLIE = 1;
 
-const CANVAS_RIGHT_LIMIT = 287;
+    static CANVAS_LEFT_LIMIT = 13;
 
-const CANVAS_TOP_LIMIT = 124;
+    static CANVAS_RIGHT_LIMIT = 287;
 
-const CANVAS_BOTTOM_LIMIT = 136;
+    static CANVAS_TOP_LIMIT = 13;
 
-const CLIENT_WIDTH = document.getElementById('sideral').clientWidth;
+    static CANVAS_BOTTOM_LIMIT = 136;
 
-const CLIENT_HEIGHT = document.getElementById('sideral').clientHeight;
+    static CLIENT_WIDTH = document.getElementById('sideral').clientWidth;
+
+    // clientY is reporting values greater than the clientHeight measure.
+    static CLIENT_HEIGHT = document.getElementById('sideral').clientHeight + 100;
+
+    static LEVEL_EASY = 'easy';
+}

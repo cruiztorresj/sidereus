@@ -8,9 +8,8 @@ class Utils {
 				CANVAS_LEFT_LIMIT;
 		} else {
 
-			// Why CANVAS_LEFT_LIMIT? Well, it's about 1 pixel from our radius two
 			return (pageCoord * (CANVAS_TOP_LIMIT - CANVAS_BOTTOM_LIMIT) / CLIENT_HEIGHT) + 
-				CANVAS_LEFT_LIMIT;
+				CANVAS_BOTTOM_LIMIT;
 		}
 	}
 }
