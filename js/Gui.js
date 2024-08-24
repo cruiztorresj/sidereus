@@ -48,11 +48,27 @@ class Gui {
             this.#playButton.height);
     }
 
+    getSideralHeight() {
+
+    }
+
+    getSideralWidth() {
+
+        
+    }
+
     get sideral() {
+
         return this.#sideral;
     }
 
     set sideral(value) {
+
         this.#sideral = value;
+    }
+
+    get canvasContext() {
+
+        return this.#canvasContext;
     }
 }

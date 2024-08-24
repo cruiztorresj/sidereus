@@ -2,11 +2,13 @@ class Main {
 
 	#gui;
 	#state;
+	#sidereus;
 
-	constructor() {
+	constructor(gui, state, sidereus) {
 		
-		this.#gui = new Gui();
-		this.#state = new State();
+		this.#gui = gui;
+		this.#state = state;
+		this.#sidereus = sidereus;
 		this.play = this.play.bind(this);
 		this.#registerEvent();
 	}
@@ -24,9 +26,7 @@ class Main {
 			this.#state.firstTouch = false;
 		}
 
-		this.#gui.sideral.removeEventListener('touchstart', this.play);
-		const level = new Level(new Melencolie(), Constants.LEVEL_EASY);
-		const sidereus = new Sidereus(level);
-		sidereus.gameLoop();
+		this.#gui.sideral.removeEventListener('touchstart', this.play);		
+		this.#sidereus.gameLoop();
 	}
 }

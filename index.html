@@ -25,7 +25,15 @@
 		<script type="text/javascript" src="js/Sidereus.js"></script>
 		<script type="text/javascript" src="js/Main.js"></script>
 		<script type="text/javascript">
-			const main = new Main();
+			// Consider putting this in a separate file.
+			const gui = new Gui();
+			const state = new State();
+			const weapon = new Weapon();
+			const hero = new Melencolie(weapon); // There will be more heroes.
+			const level = new Level(hero, Constants.LEVEL_EASY);
+			const drawer = new Drawer(gui);
+			const sidereus = new Sidereus(level, drawer);
+			const main = new Main(gui, state, sidereus,);
 		</script>
 	</body>
 </html>

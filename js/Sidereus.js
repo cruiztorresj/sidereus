@@ -3,10 +3,11 @@ class Sidereus {
 	#level;
 	#drawer;
 
-	constructor(level) {
+	constructor(level, drawer) {
 
 		this.#level = level;
-		this.#drawer = new Drawer();
+		this.#drawer = drawer;
+		this.#level.hero.setInitialPosition(/* send parameters width and height */);
 		this.moveHero = this.moveHero.bind(this);
 		//this.heroShoot = this.heroShoot.bind(this);
 		this.#registerDrawerEvents();
@@ -19,18 +20,19 @@ class Sidereus {
 
 	#registerDrawerEvents() {
 
-		this.#drawer.sideral.addEventListener('touchmove', this.moveHero);
+		//this.#drawer.gui.sideral.addEventListener('touchmove', this.moveHero);
+		this.#drawer.registerMoveHeroEvent(this.moveHero);
 		//this.#drawer.sideral.addEventListener('touchstart', this.heroShoot);
 	}
 
 	moveHero(evt) {
 
 		evt.preventDefault();
-
+	
 		const touches = evt.changedTouches;
 
 		const touched = touches.item(0);
-
+		
 		const convertedCoordX =
 			Utils.convertPageCoordToHeroCoord(touched.clientX, 'x');
 

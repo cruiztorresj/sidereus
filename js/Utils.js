@@ -4,12 +4,12 @@ class Utils {
 
 		if (coord === 'x') {
 
-			return (pageCoord * (CANVAS_RIGHT_LIMIT - CANVAS_LEFT_LIMIT) / CLIENT_WIDTH) + 
-				CANVAS_LEFT_LIMIT;
+			return (pageCoord * (Constants.CANVAS_RIGHT_LIMIT - Constants.CANVAS_LEFT_LIMIT) / Constants.CLIENT_WIDTH) + 
+				Constants.CANVAS_LEFT_LIMIT;
 		} else {
 
-			return (pageCoord * (CANVAS_TOP_LIMIT - CANVAS_BOTTOM_LIMIT) / CLIENT_HEIGHT) + 
-				CANVAS_BOTTOM_LIMIT;
+			return (pageCoord * (Constants.CANVAS_TOP_LIMIT - Constants.CANVAS_BOTTOM_LIMIT) / Constants.CLIENT_HEIGHT) + 
+				Constants.CANVAS_BOTTOM_LIMIT;
 		}
 	}
 }
