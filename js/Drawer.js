@@ -53,4 +53,14 @@ class Drawer {
 		
 		this.#gui.canvasContext.stroke();
 	}
+
+	getDrawingAreaWidth() {
+
+		return this.#gui.sideralWidth;
+	}
+	
+	getDrawingAreaHeight() {
+
+		return this.#gui.sideralHeight;
+	}
 }

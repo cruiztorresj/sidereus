@@ -3,12 +3,16 @@ class Gui {
     #sideral;
     #playButton;
     #canvasContext;
+    #sideralWidth;
+    #sideralHeight;
 
     constructor() {
 
         this.#sideral = document.getElementById('sideral');
         this.#canvasContext = this.#sideral.getContext('2d');
         this.#makeSideralFullPage();
+        this.#sideralWidth = this.#sideral.getBoundingClientRect().width;
+        this.#sideralHeight = this.#sideral.getBoundingClientRect().height;
         this.#playButton = new Image();
         this.#loadPlayButtonImage();
     }
@@ -24,8 +28,8 @@ class Gui {
         this.#playButton.src = "./images/SidereusPlayButton.png";
         this.#playButton.onload = () => {
             
-            const canvasWidthMidpoint = this.#sideral.getBoundingClientRect().width / 2;
-            const canvasHeightMidpoint = this.#sideral.getBoundingClientRect().height / 2;
+            const canvasWidthMidpoint = this.#sideralWidth / 2;
+            const canvasHeightMidpoint = this.#sideralHeight / 2;
             const playImgWidthMidpoint = this.#playButton.width / 2;
             const playImgHeightMidpoint = this.#playButton.height / 2;
 
@@ -37,8 +41,8 @@ class Gui {
 
     deletePlayButton() {
 
-        const canvasWidthMidpoint = this.#sideral.getBoundingClientRect().width / 2;
-        const canvasHeightMidpoint = this.#sideral.getBoundingClientRect().height / 2;
+        const canvasWidthMidpoint = this.#sideralWidth / 2;
+        const canvasHeightMidpoint = this.#sideralHeight / 2;
         const playImgWidthMidpoint = this.#playButton.width / 2;
         const playImgHeightMidpoint = this.#playButton.height / 2;
 
@@ -48,13 +52,14 @@ class Gui {
             this.#playButton.height);
     }
 
-    getSideralHeight() {
+    get sideralWidth() {
 
+        return this.#sideralWidth;
     }
 
-    getSideralWidth() {
+    get sideralHeight() {
 
-        
+        return this.#sideralHeight;
     }
 
     get sideral() {

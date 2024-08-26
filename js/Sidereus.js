@@ -7,7 +7,7 @@ class Sidereus {
 
 		this.#level = level;
 		this.#drawer = drawer;
-		this.#level.hero.setInitialPosition(/* send parameters width and height */);
+		this.#level.hero.setInitialPosition(this.#drawer.getDrawingAreaWidth(), this.#drawer.getDrawingAreaHeight());
 		this.moveHero = this.moveHero.bind(this);
 		//this.heroShoot = this.heroShoot.bind(this);
 		this.#registerDrawerEvents();

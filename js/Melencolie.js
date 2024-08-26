@@ -16,8 +16,6 @@ class Melencolie {
 		this.#radiusOne = 35;
 		this.#radiusTwoFactor = 1.20;
 		this.#radiusTwo = this.#radiusOne * this.#radiusTwoFactor;
-		this.#coordX = 150;
-		this.#coordY = 136;
 		this.#radiusOneColor = 'yellow';
 		this.#radiusTwoColor = 'aliceblue';
 		this.#weapon = weapon;
@@ -115,8 +113,9 @@ class Melencolie {
 		return result;
 	}
 
-	setInitialPosition(/*parameters*/) {
+	setInitialPosition(width, height) {
 
-		// calculate
+		this.#coordX = width / 2;
+		this.#coordY = height - this.#radiusTwo;
 	}
 }
