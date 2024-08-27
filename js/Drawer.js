@@ -50,8 +50,20 @@ class Drawer {
 
 		this.#gui.canvasContext.moveTo(hero.coordX, hero.coordY);
 		this.#gui.canvasContext.lineTo(hero.getWeaponCoord(2, 'x'), hero.getWeaponCoord(2, 'y'));
-		
 		this.#gui.canvasContext.stroke();
+	}
+
+	drawStars(stars) {
+
+		// this.#gui.canvasContext.beginPath();
+
+		for (const star of stars) {
+
+			this.#gui.canvasContext.strokeStyle = star.color;
+			this.#gui.canvasContext.moveTo(star.coordX, star.coordY);
+			this.#gui.canvasContext.arc(star.coordX, star.coordY, 2, 0, Math.PI * 2, true);
+			this.#gui.canvasContext.stroke();
+		}
 	}
 
 	getDrawingArea() {

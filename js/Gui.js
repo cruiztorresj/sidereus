@@ -11,7 +11,6 @@ class Gui {
         this.#canvasContext = this.#sideral.getContext('2d');
         this.#makeSideralFullPage();
         this.#sideralBox = this.#sideral.getBoundingClientRect();
-        console.log(`SIDERAL WIDTH: ${this.#sideralBox.width} *** SIDERAL HEIGHT: ${this.#sideralBox.height}`)
         this.#playButton = new Image();
         this.#loadPlayButtonImage();
     }

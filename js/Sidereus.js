@@ -2,12 +2,16 @@ class Sidereus {
 
 	#level;
 	#drawer;
+	#stars;
 
 	constructor(level, drawer) {
 
 		this.#level = level;
 		this.#drawer = drawer;
-		this.#level.hero.setInitialPosition(this.#drawer.getDrawingArea().width, this.#drawer.getDrawingArea().height);
+		this.#stars = [];
+		this.#generateStars();
+		this.#level.hero.setInitialPosition(this.#drawer.getDrawingArea().width,
+											this.#drawer.getDrawingArea().height);
 		this.moveHero = this.moveHero.bind(this);
 		//this.heroShoot = this.heroShoot.bind(this);
 		this.#registerDrawerEvents();
@@ -16,6 +20,11 @@ class Sidereus {
 	gameLoop() {
 
 		this.#drawer.drawHero(this.#level.hero);
+		
+		//while(true) { // change to game over condition
+
+			this.#drawer.drawStars(this.#stars);
+		//}
 	}
 
 	#registerDrawerEvents() {
@@ -65,7 +74,12 @@ class Sidereus {
 			}
 
 			this.#drawer.clearCanvas();
+			for (const star of this.#stars) {
+
+				star.coordY += 1;
+			}
 			this.#drawer.drawHero(this.#level.hero);
+			this.#drawer.drawStars(this.#stars);
 		}
 	}
 
@@ -82,4 +96,13 @@ class Sidereus {
 
 	// 	console.log(`Hero shooting at: ${convertedCoordY}`);
 	// }
+
+	#generateStars() {
+
+		for(let i = 0; i < 20; i++) {
+
+			this.#stars.push(new Star(Utils.getRandom(this.#drawer.getDrawingArea().width),
+						Utils.getRandom(this.#drawer.getDrawingArea().height), 'white'));
+		}
+	}
 }
