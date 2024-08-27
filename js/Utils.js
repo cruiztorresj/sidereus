@@ -1,15 +1,13 @@
 class Utils {
 
-	static convertPageCoordToHeroCoord(pageCoord, coord) {
+	static convertPageCoordToHeroCoord(pageCoord, coord, clientWidth, clientHeight) {
 
 		if (coord === 'x') {
 
-			return (pageCoord * (Constants.CANVAS_RIGHT_LIMIT - Constants.CANVAS_LEFT_LIMIT) / Constants.CLIENT_WIDTH) + 
-				Constants.CANVAS_LEFT_LIMIT;
+			return (pageCoord * clientWidth / clientWidth);
 		} else {
 
-			return (pageCoord * (Constants.CANVAS_TOP_LIMIT - Constants.CANVAS_BOTTOM_LIMIT) / Constants.CLIENT_HEIGHT) + 
-				Constants.CANVAS_BOTTOM_LIMIT;
+			return (pageCoord * (-Constants.CANVAS_BOTTOM_LIMIT) / clientHeight) + Constants.CANVAS_BOTTOM_LIMIT;
 		}
 	}
 }

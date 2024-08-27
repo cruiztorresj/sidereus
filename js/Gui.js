@@ -3,16 +3,15 @@ class Gui {
     #sideral;
     #playButton;
     #canvasContext;
-    #sideralWidth;
-    #sideralHeight;
+    #sideralBox;
 
     constructor() {
 
         this.#sideral = document.getElementById('sideral');
         this.#canvasContext = this.#sideral.getContext('2d');
         this.#makeSideralFullPage();
-        this.#sideralWidth = this.#sideral.getBoundingClientRect().width;
-        this.#sideralHeight = this.#sideral.getBoundingClientRect().height;
+        this.#sideralBox = this.#sideral.getBoundingClientRect();
+        console.log(`SIDERAL WIDTH: ${this.#sideralBox.width} *** SIDERAL HEIGHT: ${this.#sideralBox.height}`)
         this.#playButton = new Image();
         this.#loadPlayButtonImage();
     }
@@ -28,8 +27,8 @@ class Gui {
         this.#playButton.src = "./images/SidereusPlayButton.png";
         this.#playButton.onload = () => {
             
-            const canvasWidthMidpoint = this.#sideralWidth / 2;
-            const canvasHeightMidpoint = this.#sideralHeight / 2;
+            const canvasWidthMidpoint = this.#sideralBox.width / 2;
+            const canvasHeightMidpoint = this.#sideralBox.height / 2;
             const playImgWidthMidpoint = this.#playButton.width / 2;
             const playImgHeightMidpoint = this.#playButton.height / 2;
 
@@ -41,8 +40,8 @@ class Gui {
 
     deletePlayButton() {
 
-        const canvasWidthMidpoint = this.#sideralWidth / 2;
-        const canvasHeightMidpoint = this.#sideralHeight / 2;
+        const canvasWidthMidpoint = this.#sideralBox.width / 2;
+        const canvasHeightMidpoint = this.#sideralBox.height / 2;
         const playImgWidthMidpoint = this.#playButton.width / 2;
         const playImgHeightMidpoint = this.#playButton.height / 2;
 
@@ -52,14 +51,9 @@ class Gui {
             this.#playButton.height);
     }
 
-    get sideralWidth() {
+    get sideralBox() {
 
-        return this.#sideralWidth;
-    }
-
-    get sideralHeight() {
-
-        return this.#sideralHeight;
+        return this.#sideralBox;
     }
 
     get sideral() {
