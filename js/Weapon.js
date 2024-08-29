@@ -3,12 +3,24 @@ class Weapon {
 	#angleEndpointOne;
 	#angleEndpointTwo;
 	#color;
+	#bulletSpeed;
 	
 	constructor() {
-
+		
 		this.#angleEndpointOne = -90;
 		this.#angleEndpointTwo = -45;
+		this.#bulletSpeed = 10;
 		this.#color = 'tomato';
+	}
+	
+	get bulletSpeed() {
+		
+		return this.#bulletSpeed;
+	}
+	
+	set bulletSpeed(value) {
+		
+		this.#bulletSpeed = value;
 	}
 
 	get angleEndpointOne() {

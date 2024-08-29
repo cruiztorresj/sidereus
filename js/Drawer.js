@@ -15,9 +15,9 @@ class Drawer {
 		}
 	}
 
-	registerMoveHeroEvent(handler) {
+	registerHeroEvent(event, handler) {
 
-		this.#gui.sideral.addEventListener('touchmove', handler);
+		this.#gui.sideral.addEventListener(event, handler);
 	}
 
 	clearCanvas() {
@@ -71,7 +71,17 @@ class Drawer {
 			this.#gui.canvasContext.closePath();
 			this.#gui.canvasContext.stroke();
 		}
-		
+	}
+
+	drawHeroShoots(shoots) {
+
+		for (const shoot of shoots) {
+
+			this.#gui.canvasContext.fillStyle = shoot.color;
+
+			this.#gui.canvasContext.moveTo(shoot.coordX, shoot.coordY);
+			this.#gui.canvasContext.fillRect(shoot.coordX, shoot.coordY, 10, 10);
+		}		
 	}
 
 	getDrawingArea() {

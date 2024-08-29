@@ -3,23 +3,25 @@ class Sidereus {
 	#level;
 	#drawer;
 	#stars;
+	#state;
 
-	constructor(level, drawer) {
+	constructor(level, drawer, state) {
 
 		this.#level = level;
 		this.#drawer = drawer;
+		this.#state = state;
 		this.#stars = [];
 		this.#generateStars();
 		this.#level.hero.setInitialPosition(this.#drawer.getDrawingArea().width,
 											this.#drawer.getDrawingArea().height);
 		this.moveHero = this.moveHero.bind(this);
 		this.draw = this.draw.bind(this);
-		//this.heroShoot = this.heroShoot.bind(this);
+		this.heroShoot = this.heroShoot.bind(this);
 		this.#registerDrawerEvents();
 	}
 
-	gameLoop() {
-
+	gameLoop(sate) {
+		
 		requestAnimationFrame(this.draw);
 	}
 	
@@ -28,20 +30,28 @@ class Sidereus {
 
 		this.#drawer.drawHero(this.#level.hero);
 
+		this.#drawer.drawStars(this.#stars);
+		this.#drawer.drawHeroShoots(this.#state.heroShoots);
+
+		// update function
 		for (const star of this.#stars) {
 
 			star.coordY += star.speed;
 		}
 
-		this.#drawer.drawStars(this.#stars);
+		for (const bullet of this.#state.heroShoots) {
+
+			bullet.coordY -= bullet.speed;
+		}
+
 		
 		requestAnimationFrame(this.draw);
 	}
 
 	#registerDrawerEvents() {
 
-		this.#drawer.registerMoveHeroEvent(this.moveHero);
-		//this.#drawer.sideral.addEventListener('touchstart', this.heroShoot);
+		this.#drawer.registerHeroEvent('touchmove', this.moveHero);
+		this.#drawer.registerHeroEvent('touchstart', this.heroShoot);
 	}
 
 	moveHero(evt) {
@@ -73,13 +83,13 @@ class Sidereus {
 
 					if (convertedCoordX >= this.#level.hero.radiusTwo) {
 
-						this.#level.hero.coordX -= 5;
+						this.#level.hero.coordX -= 5; // TODO: Magic numbers! Getting rif of
 					}
 				} else { // Moving right
 
 					if (convertedCoordX <= this.#drawer.getDrawingArea().width - this.#level.hero.radiusTwo) {
 
-						this.#level.hero.coordX += 5;
+						this.#level.hero.coordX += 5; // TODO: Magic numbers! Getting rif of
 					}
 				}
 			}
@@ -88,19 +98,33 @@ class Sidereus {
 		}
 	}
 
-	// heroShoot(evt) {
+	heroShoot(evt) {
 
-	// 	evt.preventDefault();
+		evt.preventDefault();
 
-	// 	const touches = evt.changedTouches;
+		if (!this.#state.firstTouch) {
 
-	// 	const touched = touches.item(0);
+			const touches = evt.changedTouches;
 
-	// 	const convertedCoordY =
-	// 		Utils.convertPageCoordToHeroCoord(touched.clientY, 'y');
+			const touched = touches.item(0);
 
-	// 	console.log(`Hero shooting at: ${convertedCoordY}`);
-	// }
+			const convertedCoordX =
+			Utils.convertPageCoordToHeroCoord(touched.clientX - this.#drawer.getDrawingArea().left, 'x',
+				this.#drawer.getDrawingArea().width,
+				this.#drawer.getDrawingArea().height);
+
+			const convertedCoordY =
+				Utils.convertPageCoordToHeroCoord(touched.clientY - this.#drawer.getDrawingArea().top, 'y',
+					this.#drawer.getDrawingArea().width,
+					this.#drawer.getDrawingArea().height);
+
+			if (convertedCoordY > 30) { // Shoots are triggered touching above the ship
+
+				this.#state.heroShoots.push(new Bullet(this.#level.hero.coordX - 5,
+								this.#level.hero.coordY - this.#level.hero.radiusTwo, 10, 'hotpink'));
+			}
+		}
+	}
 
 	#generateStars() {
 

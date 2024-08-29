@@ -118,4 +118,6 @@ class Melencolie {
 		this.#coordX = width / 2;
 		this.#coordY = height - this.#radiusTwo;
 	}
+
+	// TODO: Consider having a number of available shots so the player can buy more shots.
 }

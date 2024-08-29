@@ -27,6 +27,6 @@ class Main {
 		}
 
 		this.#gui.sideral.removeEventListener('touchstart', this.play);		
-		this.#sidereus.gameLoop();
+		this.#sidereus.gameLoop(this.#state);
 	}
 }
