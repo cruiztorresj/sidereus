@@ -13,18 +13,29 @@ class Sidereus {
 		this.#level.hero.setInitialPosition(this.#drawer.getDrawingArea().width,
 											this.#drawer.getDrawingArea().height);
 		this.moveHero = this.moveHero.bind(this);
+		this.draw = this.draw.bind(this);
 		//this.heroShoot = this.heroShoot.bind(this);
 		this.#registerDrawerEvents();
 	}
 
 	gameLoop() {
 
-		this.#drawer.drawHero(this.#level.hero);
-		
-		//while(true) { // change to game over condition
+		requestAnimationFrame(this.draw);
+	}
+	
+	draw() {
+		this.#drawer.clearCanvas();
 
-			this.#drawer.drawStars(this.#stars);
-		//}
+		this.#drawer.drawHero(this.#level.hero);
+
+		for (const star of this.#stars) {
+
+			star.coordY += star.speed;
+		}
+
+		this.#drawer.drawStars(this.#stars);
+		
+		requestAnimationFrame(this.draw);
 	}
 
 	#registerDrawerEvents() {
@@ -73,13 +84,7 @@ class Sidereus {
 				}
 			}
 
-			this.#drawer.clearCanvas();
-			for (const star of this.#stars) {
-
-				star.coordY += 1;
-			}
 			this.#drawer.drawHero(this.#level.hero);
-			this.#drawer.drawStars(this.#stars);
 		}
 	}
 
@@ -99,10 +104,11 @@ class Sidereus {
 
 	#generateStars() {
 
-		for(let i = 0; i < 20; i++) {
+		// TODO: Random number from 1 to 10, generate n stars, wait m seconds, repeat
+		for(let i = 0; i < 10; i++) {
 
 			this.#stars.push(new Star(Utils.getRandom(this.#drawer.getDrawingArea().width),
-						Utils.getRandom(this.#drawer.getDrawingArea().height), 'white'));
+						Utils.getRandom(this.#drawer.getDrawingArea().height), 'white', 1, 2));
 		}
 	}
 }

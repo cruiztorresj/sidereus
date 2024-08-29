@@ -3,12 +3,36 @@ class Star {
     #coordX;
     #coordY;
     #color;
-
-    constructor(coordX, coordY, color) {
-
+    #size;
+    #speed;
+    
+    constructor(coordX, coordY, color, size, speed) {
+        
         this.#coordX = coordX;
         this.#coordY = coordY;
         this.#color = color;
+        this.#size = size;
+        this.#speed = speed;
+    }
+    
+    get speed() {
+        
+        return this.#speed;
+    }
+
+    set speed(value) {
+        
+        this.#speed = value;
+    }
+
+    get size() {
+        
+        return this.#size;
+    }
+
+    set size(value) {
+        
+        this.#size = value;
     }
 
     get coordX() {
