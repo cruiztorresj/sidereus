@@ -15,25 +15,51 @@ class Sidereus {
 		this.#level.hero.setInitialPosition(this.#drawer.getDrawingArea().width,
 											this.#drawer.getDrawingArea().height);
 		this.moveHero = this.moveHero.bind(this);
-		this.draw = this.draw.bind(this);
+		this.play = this.play.bind(this);
 		this.heroShoot = this.heroShoot.bind(this);
 		this.#registerDrawerEvents();
 	}
 
 	gameLoop(sate) {
-		
-		requestAnimationFrame(this.draw);
+
+		this.#level.boss.startMachinery();  // state is the parameter
+		requestAnimationFrame(this.play);
 	}
 	
-	draw() {
+	play() {
+		
+		this.#draw();
+		this.#update();
+
+		requestAnimationFrame(this.play);
+	}
+
+	#generateFoes() {
+
+		if (this.#level.difficulty === 'easy') {
+
+				let counter = 1;
+				setInterval(() => {
+
+					console.log(`Foe number ${counter} appears!`);
+					counter += 1;
+				}, 3000);
+				
+		}
+	}
+
+	#draw() {
+
 		this.#drawer.clearCanvas();
 
 		this.#drawer.drawHero(this.#level.hero);
 
 		this.#drawer.drawStars(this.#stars);
 		this.#drawer.drawHeroShoots(this.#state.heroShoots);
+	}
 
-		// update function
+	#update() {
+
 		for (const star of this.#stars) {
 
 			star.coordY += star.speed;
@@ -43,9 +69,6 @@ class Sidereus {
 
 			bullet.coordY -= bullet.speed;
 		}
-
-		
-		requestAnimationFrame(this.draw);
 	}
 
 	#registerDrawerEvents() {

@@ -21,6 +21,8 @@
 		<script type="text/javascript" src="js/Bullet.js"></script>
 		<script type="text/javascript" src="js/Weapon.js"></script>
 		<script type="text/javascript" src="js/Melencolie.js"></script>
+		<script type="text/javascript" src="js/Foe.js"></script>
+		<script type="text/javascript" src="js/Apparatus.js"></script>
 		<script type="text/javascript" src="js/Drawer.js"></script>
 		<script type="text/javascript" src="js/Level.js"></script>
 		<script type="text/javascript" src="js/Utils.js"></script>
@@ -31,8 +33,9 @@
 			const gui = new Gui();
 			const state = new State();
 			const weapon = new Weapon();
+			const apparatus = new Apparatus();
 			const hero = new Melencolie(weapon); // There will be more heroes.
-			const level = new Level(hero, Constants.LEVEL_EASY);
+			const level = new Level(hero, Constants.LEVEL_EASY, apparatus);
 			const drawer = new Drawer(gui);
 			const sidereus = new Sidereus(level, drawer, state);
 			const main = new Main(gui, state, sidereus,);

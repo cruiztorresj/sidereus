@@ -52,4 +52,6 @@ class Weapon {
 
 		this.#color = color;
 	}
+
+	// TODO the weapon has bullets
 }
