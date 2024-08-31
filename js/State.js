@@ -4,13 +4,25 @@ class State {
     #heroShoots;
     #foeShoots;
     #foes;
+    #numberOfTaps;
     
     constructor() {
         
         this.#firstTouch = true;
+        this.#numberOfTaps = 0;
         this.#heroShoots = [];
         this.#foes = [];
         this.#foeShoots = [];
+    }
+    
+    get numberOfTaps() {
+        
+        return this.#numberOfTaps;
+    }
+    
+    set numberOfTaps(value) {
+        
+        this.#numberOfTaps = value;
     }
     
     get foeShoots() {

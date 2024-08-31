@@ -30,7 +30,8 @@
 		<script type="text/javascript" src="js/Sidereus.js"></script>
 		<script type="text/javascript" src="js/Main.js"></script>
 		<script type="text/javascript">
-			// Consider putting this in a separate file.
+			// Consider putting all this in a separate file.
+			const sidereusBGM = new Audio('sounds/Sidereus.mp3');
 			const gui = new Gui();
 			const state = new State();
 			const weapon = new Weapon();
@@ -39,7 +40,7 @@
 			const level = new Level(hero, Constants.LEVEL_EASY, apparatus);
 			const drawer = new Drawer(gui);
 			const sidereus = new Sidereus(level, drawer, state);
-			const main = new Main(gui, state, sidereus,);
+			const main = new Main(gui, state, sidereus, sidereusBGM);
 		</script>
 	</body>
 </html>

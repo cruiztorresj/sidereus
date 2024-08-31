@@ -100,6 +100,13 @@ class Drawer {
 		this.#gui.canvasContext.stroke();	
 	}
 
+	drawText(text, x, y) {
+
+		this.#gui.canvasContext.font = "48px serif";
+		this.#gui.canvasContext.fillStyle = 'aliceblue';
+		this.#gui.canvasContext.fillText(text, x, y);
+	}
+
 	getDrawingArea() {
 
 		return this.#gui.sideralBox;

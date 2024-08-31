@@ -36,11 +36,17 @@ class Sidereus {
 	
 	play() {
 		
-		// TODO 
-		// collision detection
-		// end game
-		this.#draw();
+		if (this.#level.hero.enemiesDown >= 500) { // TODO fix winning conditions
+
+			this.#drawer.drawText("Sidereus", 10, 50);
+			this.#drawer.drawText("Proof of Concept", 10, 100);
+			// TODO cancel all setInterval functions
+			return;
+		}
+
 		this.#update();
+		this.#draw();
+		
 
 		requestAnimationFrame(this.play);
 	}
@@ -58,6 +64,20 @@ class Sidereus {
 
 	// TODO each of the logic units inside this function should be extracted in their own functions.
 	#update() {
+
+		// Collision on foes
+		// for (const bullet of this.#state.heroShoots) {
+
+		// 	for (const foe of this.#state.foes) {
+				
+		// 		if(((bullet.coordX >= foe.coordX - foe.size) && bullet.coordX <= foe.coordX + foe.size) && (bullet.coordY <= foe.coordY)) {
+					
+		// 			console.log(`Foe ${foe.id} was hit`);
+		// 			this.#state.foes.splice(foe.id, 1);
+		// 		}
+		// 	}
+		// }
+		
 
 		// Move stars
 		for (const star of this.#stars) {
@@ -82,8 +102,6 @@ class Sidereus {
 
 			bullet.coordY -= bullet.speed;
 		}
-
-		// Remove passed by foes
 
 		// Move foes towards hero
 		for (const foe of this.#state.foes) {
@@ -198,7 +216,6 @@ class Sidereus {
 
 				this.#stars.splice(0, 100);
 			}
-
 		}, 2000);
 	}
 }
