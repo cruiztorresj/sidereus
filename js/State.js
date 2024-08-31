@@ -2,13 +2,20 @@ class State {
     
     #firstTouch;
     #heroShoots;
+    #foes;
     
     constructor() {
         
         this.#firstTouch = true;
         this.#heroShoots = [];
+        this.#foes = [];
     }
     
+    get foes() {
+        
+        return this.#foes;
+    }
+
     get heroShoots() {
         
         return this.#heroShoots;

@@ -1,16 +1,40 @@
 class Foe {
 
+    #id;
     #coordX;
     #coordY;
     #speed;
     #color;
+    #size;
     
-    constructor(coordX, coordY, speed, color) {
+    constructor(id, coordX, coordY, speed, color, size) {
         
+        this.#id = id;
         this.#coordX = coordX;
         this.#coordY = coordY;
         this.#speed = speed;
         this.#color = color;
+        this.#size = size;
+    }
+
+    get size() {
+        
+        return this.#size;
+    }
+
+    set size(value) {
+        
+        this.#size = value;
+    }
+    
+    get id() {
+        
+        return this.#id;
+    }
+
+    set id(value) {
+        
+        this.#id = value;
     }
 
     get color() {

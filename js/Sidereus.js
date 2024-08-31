@@ -20,32 +20,22 @@ class Sidereus {
 		this.#registerDrawerEvents();
 	}
 
-	gameLoop(sate) {
+	gameLoop() {
 
-		this.#level.boss.startMachinery();  // state is the parameter
+		this.#level.boss.startMachinery(this.#state, this.#level.difficulty);
 		requestAnimationFrame(this.play);
 	}
 	
 	play() {
 		
+		// TODO 
+		// foes attack
+		// collision detection
+		// end game
 		this.#draw();
 		this.#update();
 
 		requestAnimationFrame(this.play);
-	}
-
-	#generateFoes() {
-
-		if (this.#level.difficulty === 'easy') {
-
-				let counter = 1;
-				setInterval(() => {
-
-					console.log(`Foe number ${counter} appears!`);
-					counter += 1;
-				}, 3000);
-				
-		}
 	}
 
 	#draw() {
@@ -53,8 +43,8 @@ class Sidereus {
 		this.#drawer.clearCanvas();
 
 		this.#drawer.drawHero(this.#level.hero);
-
 		this.#drawer.drawStars(this.#stars);
+		this.#drawer.drawFoes(this.#state.foes);
 		this.#drawer.drawHeroShoots(this.#state.heroShoots);
 	}
 
@@ -68,6 +58,19 @@ class Sidereus {
 		for (const bullet of this.#state.heroShoots) {
 
 			bullet.coordY -= bullet.speed;
+		}
+
+		for (const foe of this.#state.foes) {
+
+			// You shall move between the screen limits, check that condition too!
+			if (Utils.getRandom(2) === 0) { // Left direction, TODO implement an enumeration.
+
+				foe.coordX -= foe.speed;
+			} else {
+
+				foe.coordX += foe.speed;
+			}
+			foe.coordY += foe.speed;
 		}
 	}
 
@@ -152,7 +155,7 @@ class Sidereus {
 	#generateStars() {
 
 		// TODO: Random number from 1 to 10, generate n stars, wait m seconds, repeat
-		for(let i = 0; i < 10; i++) {
+		for(let i = 0; i < 50; i++) {
 
 			this.#stars.push(new Star(Utils.getRandom(this.#drawer.getDrawingArea().width),
 						Utils.getRandom(this.#drawer.getDrawingArea().height), 'white', 1, 2));
