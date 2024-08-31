@@ -19,7 +19,7 @@ class Sidereus {
 
 	#setUp() {
 
-		this.#generateStars();
+		this.#starGenerator();
 		this.#level.hero.setInitialPosition(this.#drawer.getDrawingArea().width,
 											this.#drawer.getDrawingArea().height);
 		this.#level.boss.startMachinery(this.#state, this.#level.difficulty, this.#drawer.getDrawingArea().width);
@@ -178,13 +178,27 @@ class Sidereus {
 		}
 	}
 
-	#generateStars() {
+	#starGenerator() {
 
-		// TODO: Random number from 1 to 10, generate n stars, wait m seconds, repeat
-		for(let i = 0; i < 50; i++) {
+		for(let i = 0; i < 100; i++) {
 
 			this.#stars.push(new Star(Utils.getRandom(this.#drawer.getDrawingArea().width),
 						Utils.getRandom(this.#drawer.getDrawingArea().height), 'white', 1, 2));
 		}
+
+		setInterval(() => {
+
+			for(let i = 0; i < 20; i++) {
+
+				this.#stars.push(new Star(Utils.getRandom(this.#drawer.getDrawingArea().width),
+							-Utils.getRandom(this.#drawer.getDrawingArea().height), 'white', 1, 2));
+			}
+
+			if(this.#stars.length >= 200) { // Magic numbers! TODO fix
+
+				this.#stars.splice(0, 100);
+			}
+
+		}, 2000);
 	}
 }

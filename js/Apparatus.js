@@ -25,13 +25,10 @@ class Apparatus {
                 
                     if (Utils.getRandom(10) < 5) { // Magic number, the probability of a foe shooting or not
     
-                        console.log(`Foe: ${foe.id} decided to shoot!`);
                         state.foeShoots.push(new Bullet(foe.coordX, foe.coordY, 4, 'lime'));
                     }
                 });
             }, 2000);
-
-            
         }
     }
 
