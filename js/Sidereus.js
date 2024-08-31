@@ -11,25 +11,32 @@ class Sidereus {
 		this.#drawer = drawer;
 		this.#state = state;
 		this.#stars = [];
+		
+		this.play = this.play.bind(this);
+		this.heroShoot = this.heroShoot.bind(this);
+		this.moveHero = this.moveHero.bind(this);
+	}
+
+	#setUp() {
+
 		this.#generateStars();
 		this.#level.hero.setInitialPosition(this.#drawer.getDrawingArea().width,
 											this.#drawer.getDrawingArea().height);
-		this.moveHero = this.moveHero.bind(this);
-		this.play = this.play.bind(this);
-		this.heroShoot = this.heroShoot.bind(this);
+		this.#level.boss.startMachinery(this.#state, this.#level.difficulty, this.#drawer.getDrawingArea().width);
+		this.#level.boss.startAttackEngine(this.#state, this.#level.difficulty);
+		this.#level.boss.manageMachinery(this.#state);
 		this.#registerDrawerEvents();
 	}
 
 	gameLoop() {
 
-		this.#level.boss.startMachinery(this.#state, this.#level.difficulty);
+		this.#setUp();
 		requestAnimationFrame(this.play);
 	}
 	
 	play() {
 		
 		// TODO 
-		// foes attack
 		// collision detection
 		// end game
 		this.#draw();
@@ -45,21 +52,40 @@ class Sidereus {
 		this.#drawer.drawHero(this.#level.hero);
 		this.#drawer.drawStars(this.#stars);
 		this.#drawer.drawFoes(this.#state.foes);
-		this.#drawer.drawHeroShoots(this.#state.heroShoots);
+		this.#drawer.drawShoots(this.#state.heroShoots);
+		this.#drawer.drawShoots(this.#state.foeShoots);
 	}
 
+	// TODO each of the logic units inside this function should be extracted in their own functions.
 	#update() {
 
+		// Move stars
 		for (const star of this.#stars) {
 
 			star.coordY += star.speed;
 		}
 
+		// Move hero bullets towards foes
+		for (const bullet of this.#state.heroShoots) {
+
+			bullet.coordY -= bullet.speed;
+		}
+		
+		// Move foe bullets towards Hero
+		for (const bullet of this.#state.foeShoots) {
+
+			bullet.coordY += bullet.speed;
+		}
+
+		// Move hero bullets towards foes
 		for (const bullet of this.#state.heroShoots) {
 
 			bullet.coordY -= bullet.speed;
 		}
 
+		// Remove passed by foes
+
+		// Move foes towards hero
 		for (const foe of this.#state.foes) {
 
 			// You shall move between the screen limits, check that condition too!

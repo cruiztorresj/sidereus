@@ -73,7 +73,7 @@ class Drawer {
 		}
 	}
 
-	drawHeroShoots(shoots) {
+	drawShoots(shoots) {
 
 		for (const shoot of shoots) {
 
