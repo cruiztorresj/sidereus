@@ -11,6 +11,7 @@ class Melencolie {
 	#radiusOneColor;
 	#radiusTwoColor;
 	#enemiesDown;
+	#lifeGauge;
 	
 	constructor(weapon) {
 		
@@ -20,9 +21,20 @@ class Melencolie {
 		this.#radiusOneColor = 'yellow';
 		this.#radiusTwoColor = 'aliceblue';
 		this.#weapon = weapon;
-		this.#enemiesDown = 10;
+		this.#enemiesDown = 0;
+		this.#lifeGauge = 3;
 	}
 	
+	get lifeGauge() {
+
+		return this.#lifeGauge;
+	}
+
+	set lifeGauge(value) {
+
+		this.#lifeGauge = value;
+	}
+
 	get enemiesDown() {
 		
 		return this.#enemiesDown;

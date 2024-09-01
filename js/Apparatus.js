@@ -22,9 +22,11 @@ class Apparatus {
             setInterval(() => {
 
                 state.foes.forEach(foe => {
-                
-                    if (Utils.getRandom(10) < 5) { // Magic number, the probability of a foe shooting or not
-    
+
+                    // Magic number, the probability of a foe shooting or not
+                    // Half the time decide to shoot
+                    if (Utils.getRandom(10) < 5) {
+                        
                         state.foeShoots.push(new Bullet(foe.coordX, foe.coordY, 4, 'lime'));
                     }
                 });

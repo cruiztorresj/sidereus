@@ -36,18 +36,18 @@ class Sidereus {
 	
 	play() {
 		
-		if (this.#level.hero.enemiesDown >= 25) { // TODO fix winning conditions
+		if (this.#level.hero.lifeGauge <= 0 || this.#level.hero.enemiesDown >= 25) {
 
 			this.#drawer.drawText("Sidereus", 10, 50);
 			this.#drawer.drawText("Proof of Concept", 10, 100);
-			// TODO cancel all setInterval functions
+			this.#drawer.drawText("Thanks!!!", 10, 200);
+			// TODO cancel all setInterval functions - Technical debt
 			return;
 		}
 
 		this.#update();
 		this.#draw();
 		
-
 		requestAnimationFrame(this.play);
 	}
 
@@ -68,11 +68,14 @@ class Sidereus {
 
 		// Filtering hero shoots off screen.
 		this.#state.heroShoots = this.#state.heroShoots.filter(shoot => shoot.coordY >= 0);
+		
+		// Filtering foe shoots off screen.
+		this.#state.foeShoots = this.#state.foeShoots.filter(shoot => shoot.coordY <= this.#drawer.getDrawingArea().height);
 
 		// Filtering foes passing by the screen
 		//this.#state.foes = this.#state.foes.filter(foe => foe.coordY <= this.#drawer.getDrawingArea().height );
 		
-		// Collision on foes
+		// Collision hero shoots on foes
 		for (const bullet of this.#state.heroShoots) {
 
 			for (const foe of this.#state.foes) {
@@ -88,6 +91,18 @@ class Sidereus {
 
 		// Getting rid off inactive foes in collision detection phase.
 		this.#state.foes = this.#state.foes.filter(foe => foe.isActive);
+
+		// Collision foe shoots on hero
+		for (const bullet of this.#state.foeShoots) {
+				
+			if(((bullet.coordX >= this.#level.hero.coordX - this.#level.hero.radiusTwo)
+				&& bullet.coordX <= this.#level.hero.coordX + this.#level.hero.radiusTwo)
+				&& (bullet.coordY >= this.#level.hero.coordY - this.#level.hero.radiusTwo)) {
+				
+				this.#level.hero.lifeGauge -= 1;
+				bullet.coordY = this.#drawer.getDrawingArea().height;
+			}
+		}
 
 		// Move stars
 		for (const star of this.#stars) {
