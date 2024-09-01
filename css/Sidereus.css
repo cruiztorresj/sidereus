@@ -4,9 +4,3 @@ body {
 	color: yellowgreen;
 	overflow: hidden;
 }
-
-canvas {
-
-	border-color: greenyellow;
-	border-style: solid;
-}
