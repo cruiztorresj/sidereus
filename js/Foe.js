@@ -6,6 +6,7 @@ class Foe {
     #speed;
     #color;
     #size;
+    #isActive;
     
     constructor(id, coordX, coordY, speed, color, size) {
         
@@ -15,6 +16,17 @@ class Foe {
         this.#speed = speed;
         this.#color = color;
         this.#size = size;
+        this.#isActive = true;
+    }
+    
+    get isActive() {
+        
+        return this.#isActive;
+    }
+    
+    set isActive(value) {
+        
+        this.#isActive = value;
     }
 
     get size() {

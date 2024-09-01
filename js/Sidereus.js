@@ -36,7 +36,7 @@ class Sidereus {
 	
 	play() {
 		
-		if (this.#level.hero.enemiesDown >= 500) { // TODO fix winning conditions
+		if (this.#level.hero.enemiesDown >= 25) { // TODO fix winning conditions
 
 			this.#drawer.drawText("Sidereus", 10, 50);
 			this.#drawer.drawText("Proof of Concept", 10, 100);
@@ -63,21 +63,31 @@ class Sidereus {
 	}
 
 	// TODO each of the logic units inside this function should be extracted in their own functions.
+	// TODO Magic Numbers, fix!
 	#update() {
 
-		// Collision on foes
-		// for (const bullet of this.#state.heroShoots) {
+		// Filtering hero shoots off screen.
+		this.#state.heroShoots = this.#state.heroShoots.filter(shoot => shoot.coordY >= 0);
 
-		// 	for (const foe of this.#state.foes) {
-				
-		// 		if(((bullet.coordX >= foe.coordX - foe.size) && bullet.coordX <= foe.coordX + foe.size) && (bullet.coordY <= foe.coordY)) {
-					
-		// 			console.log(`Foe ${foe.id} was hit`);
-		// 			this.#state.foes.splice(foe.id, 1);
-		// 		}
-		// 	}
-		// }
+		// Filtering foes passing by the screen
+		//this.#state.foes = this.#state.foes.filter(foe => foe.coordY <= this.#drawer.getDrawingArea().height );
 		
+		// Collision on foes
+		for (const bullet of this.#state.heroShoots) {
+
+			for (const foe of this.#state.foes) {
+				
+				if(((bullet.coordX >= foe.coordX - foe.size) && bullet.coordX <= foe.coordX + foe.size)
+					&& (bullet.coordY <= foe.coordY) && (foe.coordY < this.#drawer.getDrawingArea().height - (foe.size / 2))) {
+					
+					foe.isActive = false;
+					this.#level.hero.enemiesDown += 1;
+				}
+			}
+		}
+
+		// Getting rid off inactive foes in collision detection phase.
+		this.#state.foes = this.#state.foes.filter(foe => foe.isActive);
 
 		// Move stars
 		for (const star of this.#stars) {

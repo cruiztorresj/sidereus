@@ -89,13 +89,16 @@ class Drawer {
 
 		for (const foe of foes) {
 
-			this.#gui.canvasContext.fillStyle = foe.color;
-			//this.#gui.canvasContext.beginPath();
-			this.#gui.canvasContext.moveTo(foe.coordX, foe.coordY);
-    		this.#gui.canvasContext.lineTo(foe.coordX - foe.size, foe.coordY - foe.size);
-    		this.#gui.canvasContext.lineTo(foe.coordX + foe.size, foe.coordY - foe.size);
-    		this.#gui.canvasContext.lineTo(foe.coordX, foe.coordY);
-			//this.#gui.canvasContext.closePath();
+			if (foe.isActive) {
+
+				this.#gui.canvasContext.fillStyle = foe.color;
+				//this.#gui.canvasContext.beginPath();
+				this.#gui.canvasContext.moveTo(foe.coordX, foe.coordY);
+				this.#gui.canvasContext.lineTo(foe.coordX - foe.size, foe.coordY - foe.size);
+				this.#gui.canvasContext.lineTo(foe.coordX + foe.size, foe.coordY - foe.size);
+				this.#gui.canvasContext.lineTo(foe.coordX, foe.coordY);
+				//this.#gui.canvasContext.closePath();
+			}
 		}
 		this.#gui.canvasContext.stroke();	
 	}

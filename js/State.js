@@ -40,6 +40,11 @@ class State {
         return this.#foes;
     }
 
+    set foes(foes) {
+        
+        this.#foes = foes;
+    }
+
     get heroShoots() {
         
         return this.#heroShoots;
